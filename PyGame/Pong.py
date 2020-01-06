@@ -1,12 +1,21 @@
 import pygame, random
-
+from ctypes  import *
+print(windll.user32.GetSystemMetrics(0))
+print(windll.user32.GetSystemMetrics(1))
 #Инициализация PyGame
 pygame.init()
 
 #Настройки окна
-window_w = 1600
-window_h = 900
-window = pygame.display.set_mode((window_w,window_h))
+#Использовать настраиваемое разрешение (0) или запустить во весь экран (1)
+mode = 0
+if mode:
+    window_w = windll.user32.GetSystemMetrics(0)
+    window_h = windll.user32.GetSystemMetrics(1)
+    window = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+else:
+    window_w = 1600
+    window_h = 900
+    window = pygame.display.set_mode((window_w,window_h), pygame.RESIZABLE())
 pygame.display.set_caption("Pong by Freereod")
 clock = pygame.time.Clock()
 
@@ -56,7 +65,9 @@ while run:
         if event.type == pygame.QUIT:
             run = False
     if keys[pygame.K_SPACE]:
-        bl.spawnBall(window_w,window_h)
+        bl.spawnBall(window_w,window_h) #Спавн шарика
+    if keys[pygame.K_ESCAPE]:
+        run = False #Выход
     window.fill((0,0,0))
     pygame.draw.rect(window, (100,0,255), (0,0, 5, window_h))
     pygame.draw.rect(window, (100,0,255), (0,0, window_w, 5))
