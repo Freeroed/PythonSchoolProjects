@@ -12,7 +12,7 @@ gamer_y = 100
 gamer_weight = 30
 gamer_height = 60
 gamer_speed=10
-
+gamer_livez = 100
 run = True
 
 while run:
@@ -31,9 +31,14 @@ while run:
         gamer_y -= gamer_speed    
     if (keys[pygame.K_DOWN] or keys[pygame.K_s]) and gamer_y<window_h-gamer_height-50:
         gamer_y += gamer_speed
+    if (keys[pygame.K_f]):
+        gamer_livez-=1
+
+    
 
     window.fill((0,0,0))
     pygame.draw.rect(window, (255,0,0), (gamer_x,gamer_y, gamer_weight, gamer_height))
+    pygame.draw.rect(window, (0,255,0), (0,0,16*gamer_livez,50))
     pygame.display.update()    
 
 pygame.quit()
