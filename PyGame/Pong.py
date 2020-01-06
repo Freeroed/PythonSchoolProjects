@@ -7,7 +7,7 @@ pygame.init()
 
 #Настройки окна
 #Использовать настраиваемое разрешение (0) или запустить во весь экран (1)
-mode = 0
+mode = 1
 if mode:
     window_w = windll.user32.GetSystemMetrics(0)
     window_h = windll.user32.GetSystemMetrics(1)
@@ -15,7 +15,7 @@ if mode:
 else:
     window_w = 1600
     window_h = 900
-    window = pygame.display.set_mode((window_w,window_h), pygame.RESIZABLE())
+    window = pygame.display.set_mode((window_w,window_h), pygame.RESIZABLE)
 pygame.display.set_caption("Pong by Freereod")
 clock = pygame.time.Clock()
 
