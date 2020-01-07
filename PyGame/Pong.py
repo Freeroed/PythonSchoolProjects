@@ -56,6 +56,7 @@ class ball:
 run = True
 
 bl = ball(window_w//2, window_h//2, 10, (255,0,0), random.randint(-20,20),random.randint(-20,20), 1)
+gamer_ball = ball (30,30, 10, (0,255,100), 0,0,1)
 #Основной цикл программы
 while run:
     clock.tick(30)
@@ -64,6 +65,11 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        #Отработка движения мыши
+        if event.type == pygame.MOUSEMOTION:
+            mouse = pygame.mouse.get_pos()
+            gamer_ball.x = mouse[0]
+            gamer_ball.y = mouse[1]
     if keys[pygame.K_SPACE]:
         bl.spawnBall(window_w,window_h) #Спавн шарика
     if keys[pygame.K_ESCAPE]:
@@ -74,4 +80,5 @@ while run:
     pygame.draw.rect(window, (100,0,255), (window_w, window_h, -5, -window_h))
     pygame.draw.rect(window, (100,0,255), (window_w, window_h, -window_w, -5))
     bl.drawBall(window)
+    gamer_ball.drawBall(window)
     pygame.display.update()
