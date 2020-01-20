@@ -1,6 +1,7 @@
 import pygame
 from random import randint, randrange
 
+
 #Змея как класс
 class snake(object):
     def __init__(self, segments,speed_x,speed_y):
