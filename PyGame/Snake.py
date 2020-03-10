@@ -9,7 +9,7 @@ class snake(object):
         self.segments = segments
         self.speed_x = speed_x
         self.speed_y = speed_y
-    #Отрисовка змеи
+
     def draw(self, wind):
         self.update()
         self.head.draw(wind)
@@ -140,14 +140,14 @@ while run:
     
     run = sn.checking()
     #Раскомментить, если хочешь проходить сквозь стены
-    #sn.segments[0]=teleport(sn.segments[0], window_w, window_h, sn.speed_x, sn.speed_y)
+    sn.segments[0]=teleport(sn.segments[0], window_w, window_h, sn.speed_x, sn.speed_y)
     #Эта строчка отвечает за скорость движения змеи
     if tick%3 == 0 :
         window.fill((0,0,0))
         sn.draw(window)
         food.draw(window) 
         #Закомментить если хочешь проходить сквозь стены
-        run = chek_dead(sn.segments[0],window_w, window_h)
+        #run = chek_dead(sn.segments[0],window_w, window_h)
         if not(sn.segments[0].check_contakt(food)):
             food = generate_food(sn)
             sn.add()
